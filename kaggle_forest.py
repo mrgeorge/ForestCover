@@ -21,12 +21,11 @@ if __name__ == "__main__":
     rf.fit(X_train, y)
 
     # CROSS-VALIDATE
-    parameters = {"n_estimators":np.logspace(0,3,num=4).astype("int64"),
+    parameters = {"n_estimators":np.logspace(2.5,3.5,num=3).astype("int64"),
                   "criterion":("gini", "entropy"),
-                  "max_features":np.linspace(0.1,1.,num=4),
-                  "bootstrap":(True, False),
-                  "oob_score":(True, False)}
-    rfcv = GridSearchCV(rf, parameters, cv=10, refit=True, verbose=100, n_jobs=8)
+                  "max_features":np.linspace(0.2,0.6,num=5),
+                 }
+    rfcv = GridSearchCV(rf, parameters, cv=5, refit=True, verbose=100, n_jobs=8)
 
     rfcv.fit(X_train, y)
 
